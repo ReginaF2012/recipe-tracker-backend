@@ -6,6 +6,7 @@ class Api::V1::UsersController < ApplicationController
       user = User.create(user_params)
       if user.valid?
         token = encode_token({user_id: user.id})
+        
         render json: {user: UserSerializer.new(user).to_serialized_json, token: token}
       else
         render json: {error: "Invalid username or password"}
