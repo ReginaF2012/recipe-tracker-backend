@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_015110) do
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.string "amount"
-    t.bigint "recipe_id", null: false
+    t.bigint "recipe_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
@@ -43,5 +43,4 @@ ActiveRecord::Schema.define(version: 2020_09_03_015110) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "ingredients", "recipes"
 end
