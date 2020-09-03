@@ -3,6 +3,8 @@ class User < ApplicationRecord
     validates :email, presence: :true, uniqueness: :true, format: { with: URI::MailTo::EMAIL_REGEXP } 
     validates :password_confirmation, presence: true, on: :create
     validate :password_complexity
+    has_many :recipes
+    has_many :ingredients, through: :recipes
     has_secure_password
   
     def password_complexity
