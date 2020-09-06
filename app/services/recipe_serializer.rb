@@ -9,7 +9,7 @@ class RecipeSerializer
             include: [
                 ingredients: { include: [recipes_ingredients: {only: [:amount]}], only: [:name]}
             ],
-            only: [:id, :name, :cook_time, :prep_time, :instructions, :summary, :image_url, :servings]
+            only: [:id, :name, :cook_time, :prep_time, :instructions, :summary, :image_url, :servings, :user_id]
         }
 
         @recipe.to_json(options)
