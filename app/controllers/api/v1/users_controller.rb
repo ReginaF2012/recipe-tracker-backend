@@ -9,20 +9,19 @@ class Api::V1::UsersController < ApplicationController
         
         render json: {user: UserSerializer.new(user).to_serialized_json, token: token}
       else
-        render json: {error: "Invalid username or password"}
+        render json: {errors: user.errors.full_messages}, status: :unauthorized
       end
     end
   
     # LOGGING IN
     def login
-      byebug
       user = User.find_by(email: params[:email])
   
       if user && user.authenticate(params[:password])
         token = encode_token({user_id: user.id})
         render json: {user: UserSerializer.new(user).to_serialized_json, token: token}
       else
-        render json: {error: "Invalid email or password"}
+        render json: {errors: "Invalid email or password"}, status: :unauthorized
       end
     end
 
