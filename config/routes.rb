@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create]
       resources :recipes, only: [:show, :index]
-      post '/login', to: 'users#login'
-      get '/autologin', to: 'users#autologin'
+      post '/users/login', to: 'users#login'
+      get '/users/autologin', to: 'users#autologin'
     end
   end
 

@@ -15,6 +15,7 @@ class Api::V1::UsersController < ApplicationController
   
     # LOGGING IN
     def login
+      byebug
       user = User.find_by(email: params[:email])
   
       if user && user.authenticate(params[:password])
