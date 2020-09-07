@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create]
-      resources :recipes, only: [:show, :index]
+      resources :recipes, only: [:show, :index, :create]
       post '/users/login', to: 'users#login'
       get '/users/autologin', to: 'users#autologin'
     end
