@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    validates :username, presence: :true, uniqueness: :true, length: { in: 3..20 }
+    validates :username, presence: :true, uniqueness: :true, length: { in: 3..20 }, format: {with: /\A[a-zA-Z0-9_\.]+\z/, message: "must contain only letters, numbers, and underscores"}
     validates :email, presence: :true, uniqueness: :true, format: { with: URI::MailTo::EMAIL_REGEXP } 
     validates :password_confirmation, presence: true, on: :create
     validate :password_complexity
