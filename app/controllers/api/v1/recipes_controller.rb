@@ -11,9 +11,7 @@ class Api::V1::RecipesController < ApplicationController
     end
 
     def create
-        recipe = Recipe.new(recipe_params)
-        if recipe.valid?
-            recipe.save
+        if recipe = Recipe.create(recipe_params)
             render json: RecipeSerializer.new(recipe).to_serialized_json
         else
             render json: {errors: recipe.errors.full_messages} 
@@ -23,6 +21,6 @@ class Api::V1::RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:name, :servings, :summary, :user_id, :ingredients_attributes, :instructions, :cook_time, :prep_time)
+        params.require(:recipe).permit(:name, :servings, :summary, :user_id, :instructions, :cook_time, :prep_time, ingredients_attributes: [:name, :amount])
     end
 end
