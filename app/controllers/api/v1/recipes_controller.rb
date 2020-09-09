@@ -18,6 +18,10 @@ class Api::V1::RecipesController < ApplicationController
         end
     end
 
+    def destroy
+        Recipe.find_by(id: params[:id]).destroy
+    end
+
     private
 
     def recipe_params
