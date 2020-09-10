@@ -22,6 +22,16 @@ class Api::V1::RecipesController < ApplicationController
         Recipe.find_by(id: params[:id]).destroy
     end
 
+    def update
+        recipe = Recipe.find_by(id: params[:id])
+        recipe.update(recipe_params)
+        if recipe.errors.any?
+            render json: {errors: recipe.errors.full_messages}
+        else
+            render json: RecipeSerializer.new(recipe).to_serialized_json
+        end
+    end
+
     private
 
     def recipe_params

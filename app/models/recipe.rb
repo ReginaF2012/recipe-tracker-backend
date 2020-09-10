@@ -9,8 +9,10 @@ class Recipe < ApplicationRecord
 
     # takes in an array of hashes/objects
     def ingredients_attributes=(ingredient_attributes)
+      # this is to prevent duplicates
+      self.recipes_ingredients.delete_all if self.recipes_ingredients.any?
        
-      # iterate over the array
+       # iterate over the array
       ingredient_attributes.each do |ingredient_attribute|
 
         # ingredients only have a name so, this MUST be present
@@ -19,9 +21,8 @@ class Recipe < ApplicationRecord
 
           # either find an existing ingredient or create a new one
           ingredient = Ingredient.find_or_create_by(name: ingredient_attribute[:name])
-
           # then build an instance of the join table, adding in the amount 
-          self.recipes_ingredients.build(ingredient: ingredient, amount: ingredient_attribute[:amount])
+          self.recipes_ingredients.build(ingredient: ingredient, amount: ingredient_attribute[:amount]) 
         end
       end
     end
