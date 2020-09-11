@@ -1,4 +1,5 @@
 class Api::V1::RecipesController < ApplicationController
+    skip_before_action :authorized, only: [:show, :index]
     
     def show
         recipe = Recipe.find_by(id: params[:id])

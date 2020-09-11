@@ -1,5 +1,7 @@
 class Api::V1::UsersController < ApplicationController
-    before_action :authorized, only: [:auto_login]
+  skip_before_action :authorized, only: [:create, :login]
+
+  
 
     # REGISTER
     def create
@@ -23,6 +25,11 @@ class Api::V1::UsersController < ApplicationController
       else
         render json: {errors: "Invalid email or password"}, status: :unauthorized
       end
+    end
+
+    def autologin
+      token = encode_token({user_id: current_user.id})
+      render json: {user: UserSerializer.new(current_user).to_serialized_json, token: token}
     end
 
     private
