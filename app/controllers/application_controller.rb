@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
       
       # the token to be given to a user upon successful signup/login
       def encode_token(payload)
-        #! For deployment on Heroku use ENV['SECRET_KEY_BASE']
+        #! Environment variables will need to be set!
         JWT.encode(payload, ENV['SECRET_KEY_BASE'])
       end
 

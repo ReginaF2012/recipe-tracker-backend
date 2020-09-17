@@ -23,7 +23,7 @@ class Api::V1::UsersController < ApplicationController
         token = encode_token({user_id: user.id})
         render json: {user: UserSerializer.new(user).to_serialized_json, token: token}
       else
-        render json: {errors: "Invalid email or password"}, status: :unauthorized
+        render json: {errors: "Invalid username, email or password"}, status: :unauthorized
       end
     end
 
