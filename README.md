@@ -8,10 +8,10 @@ This is the Rails API backend, the code for the frontend can be found here:
 ## Installation
 Fork and clone this repo. 
 
-# database.yml
+### database.yml
 After you will need to configure database.yml using database.yml.example as a guide. If you need additional instruction this [github gist](https://gist.github.com/jwo/4512764) provides good instruction on how to configure database.yml for postgres, you can also refer to the [postgres documentation](https://www.postgresql.org/docs/).
 
-# JWT
+### JWT
 The backend uses JWT for user authentication. In `/app/controllers/application_controller.rb` The JWT are being encoded with an evronment variable you will have to set. You can replace `ENV['SECRET_KEY_BASE']` with `Rails.application.secrets.secret_key_base` or set your own environment variables. Using `Rails.application.secrets.secret_key_base`:
 ```
     #application_controller.rb
@@ -38,10 +38,10 @@ The backend uses JWT for user authentication. In `/app/controllers/application_c
     end
 ```
 
-# Cloudinary
+### Cloudinary
 You will need to sign up for [Cloudinary](https://cloudinary.com/) to get your own credentials. After that configure `/config/initializers/cloudinary.rb`. Remember to store these in secret environment variables or add the file to your `.gitignore` before pushing anything to version control!
 
-# Starting the Server
+### Starting the Server
 Once everything is configured to your specifications it is recommended you run your server on a port other than localhost:3000 as more than likely the React frontend will be running on that server. So for instance you could run
 ```
 $ rails s -p 3001
