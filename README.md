@@ -43,7 +43,9 @@ You will need to sign up for [Cloudinary](https://cloudinary.com/) to get your o
 
 # Starting the Server
 Once everything is configured to your specifications it is recommended you run your server on a port other than localhost:3000 as more than likely the React frontend will be running on that server. So for instance you could run
-`$ rails s -p 30001`
+```
+$ rails s -p 3001
+```
 to run your server on localhost:3001 instead.
 
 ## Usage
